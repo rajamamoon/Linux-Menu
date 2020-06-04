@@ -1,0 +1,126 @@
+#!/bin/bash
+while : # Start of the loop
+do      # Start the loop from here 
+echo "Basic Linux MENU" # print the text to the display
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+echo "Enter 1 For DATE/TIME:"
+echo "Enter 2 To Show Calender:"  
+echo "Enter 3 To Delete a File: "
+echo "Enter 4 To Exit the MENU: "
+echo "Enter 5 To Show the Operating Sytem Type: "
+echo "Enter 6 To Show CPU Information: "
+echo "Enter 7 To Show Memory Information: "
+echo "Enter 8 To Show Hard Disk Information: "
+echo "Enter 9 To Show System Mounted File: "
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" 
+echo "Enter Your Selection: "
+echo
+show_date() { # The Function for Date 
+echo
+echo "Executing function 1:"
+echo
+echo "Enter a Day to Find a Specific Date: (Last-Monday, Yesterday,Next-Monday)" 
+read goat # Read the input and store it as variable goat
+date -d $goat # Display the time Described by the String ($goat)
+echo 
+}
+show_cal() { # The Function for Calender
+echo
+echo "Executing function 2"
+echo
+echo "Enter a Month and Year: (m:y) "
+read calender #read and store the response in variable calender
+cal $calender ; #runs the cal command with the string variable
+echo
+}
+echo
+Delete_file() { # The Function for Delete File
+echo
+echo "Executing function 3"
+echo
+echo "Specify The Path (/home/ubuntu/Directory Name)"
+echo "Default Directory is Listed Below:"
+echo "================================================="
+ls --color # list the directory in color folder and file in seperate color
+echo "================================================="
+read path
+echo "You Selected Path" $path
+echo
+echo "The Selected Path Is listed Below:"
+echo
+ls --color $path
+echo
+cd $path
+echo "Enter the Folder or File Name:"
+read input
+echo
+ls --color $input
+echo "The Files are listed Below: "
+cd $input # change the diretory to the file directory
+echo
+echo "What File Do You Want To Remove: "
+read answer
+echo "You Selected" $answer
+rm -rfvi $answer # -rfvi remove the file recursive and by force and confirm with user 
+cd /home/ubuntu/menucomplete # change the directory to the main folder after deleteing 
+echo
+}
+echo
+exit_menu() { # The Function for Exit
+echo
+echo "Executing function 4"
+echo 
+echo "Exiting the Menu"
+exit ; # exit command to exit the menu 
+echo
+}
+showOsType() { # The Function for OS Type
+echo
+echo "Executing function 5"
+echo
+./Ostype # The Function Runs the Program with the Name
+echo
+}
+showCpuInforamtion() {
+echo
+echo "Executing function 6"
+./CpuInformation
+echo
+}
+showMemoryInformation() {
+echo
+echo "Executing function 7"
+./MemoryInformation
+echo
+}
+show_harddisk() {
+echo
+echo "Executing function 8"
+./HarddiskInformation
+echo
+}
+show_filemounted() {
+echo
+echo "Executing function 9"
+./Filesystemmounted
+echo
+}
+echo
+read response 
+echo
+echo "You Selected: " $response
+case "$response" in # compare the user response with case 
+1) show_date;;
+2) show_cal;;
+3) Delete_file;;
+4) exit_menu;;
+5) showOsType;;
+6) showCpuInforamtion;;
+7) showMemoryInformation;;
+8) show_harddisk;;
+9) show_filemounted;;
+esac #end the case statement
+sleep 2s #pause the terminal for 2 second
+done #end the loop
+
+

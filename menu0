@@ -1,0 +1,116 @@
+#!/bin/bash
+while :
+do
+echo "Basic Linux MENU"
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+echo "Enter 1 For DATE/TIME:"
+echo "Enter 2 To Show Calender:"  
+echo "Enter 3 To Delete a File: "
+echo "Enter 4 To Exit the MENU: "
+echo "Enter 5 To Show the Operating Sytem Type: "
+echo "Enter 6 To Show CPU Information: "
+echo "Enter 7 To Show Memory Information: "
+echo "Enter 8 To Show Hard Disk Information: "
+echo "Enter 9 To Show System Mounted File: "
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" 
+echo "Enter Your Selection: "
+echo
+show_date() {
+echo
+echo "Executing function 1:"
+echo
+date;
+echo 
+}
+show_cal() {
+echo
+echo "Executing function 2"
+echo
+echo "Enter a Month and Year: (m:y) "
+read calender
+cal $calender ;
+echo
+}
+echo
+Delete_file() {
+echo
+echo "Executing function 3"
+echo
+echo "Specify The Path (/home/ubuntu/Directory Name)"
+echo "Home Directory is Listed Below:"
+echo "================================================="
+ls --color
+echo "================================================="
+read path
+echo "You Selected Path" $path
+echo
+echo "The Selected Path Is listed Below:"
+echo
+ls --color $path
+echo
+cd $path
+echo "What File Do You Want To Remove: "
+read answer
+echo "You Selected" $answer
+rm -rfvi $answer
+echo
+}
+echo
+exit_menu() {
+echo
+echo "Executing function 4"
+echo 
+echo "Exiting the Menu"
+exit ;
+echo
+}
+showOsType() {
+echo
+echo "Executing function 5"
+echo
+./Ostype
+echo
+}
+showCpuInforamtion() {
+echo
+echo "Executing function 6"
+./CpuInformation
+echo
+}
+showMemoryInformation() {
+echo
+echo "Executing function 7"
+./MemoryInformation
+echo
+}
+show_harddisk() {
+echo
+echo "Executing function 8"
+./HarddiskInformation
+echo
+}
+show_filemounted() {
+echo
+echo "Executing function 9"
+./Filesystemmounted
+echo
+}
+echo
+read response
+echo
+echo "You Selected: " $response
+case "$response" in
+1) show_date;;
+2) show_cal;;
+3) Delete_file;;
+4) exit_menu;;
+5) showOsType;;
+6) showCpuInforamtion;;
+7) showMemoryInformation;;
+8) show_harddisk;;
+9) show_filemounted;;
+esac
+sleep 2s
+done
+
+
