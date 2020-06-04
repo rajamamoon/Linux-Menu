@@ -1,0 +1,14 @@
+title="Menu"
+prompt="Pick an option:"
+options=("Calendar" "FileSelection" "Text-Entry")
+
+while opt=$(zenity --title="$title" --text="$prompt" --list \
+                   --column="Options" "${options[@]}"); do
+
+    case "$opt" in
+    "${options[0]}" ) zenity --calendar  ;;
+    "${options[1]}" ) zenity --file-selection;;
+    "${options[2]}" ) zenity --entry;;
+    esac
+
+done
